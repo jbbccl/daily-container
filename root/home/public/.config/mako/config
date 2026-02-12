@@ -1,0 +1,14 @@
+default-timeout=0
+include=~/.config/mako/colors.conf
+border-size=2
+border-radius=8
+icon-border-radius=8
+icons=1
+anchor=bottom-right
+default-timeout=4000
+margin=16
+padding=10,0
+font=Maple Mono NF CN 12
+history=1
+max-visible=20
+max-history=100
