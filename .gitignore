@@ -3,6 +3,7 @@ build/kali/res/fonts/maple
 build/kali/res/temp
 **/.Xauthority
 root/home/public/.icons/Papirus-Dark/*
+root/home/public/.icons/hicolor/*
 root/home/public/.fonts/*
 root/home/public/.local/share/fcitx5
 root/home/kali

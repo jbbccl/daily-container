@@ -2,6 +2,7 @@
 touch $XAUTHORITY
 xauth generate $DISPLAY || true
 cp $XAUTHORITY root/home/kali/.Xauthority
+./mkenv.sh
 
 img_name="${1:-localhost/kali-linux:play}"
 CONTAINER_NAME="kali"
@@ -40,7 +41,7 @@ ARGS=(
 	--userns=keep-id 
 	"$img_name"
 	/sbin/init
-	# zsh
+	# /lib/systemd/systemd
 )
 
 podman rm -f "$CONTAINER_NAME" 2>/dev/null
