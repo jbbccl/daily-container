@@ -13,7 +13,7 @@ ARGS=(
 	--name "$CONTAINER_NAME"
 	--rm
 	-it
-	--detach
+	# --detach
 	
 	-v "/tmp/.X11-unix:/tmp/.X11-unix":ro 
 	-v "$XDG_RUNTIME_DIR/pipewire-0:$XDG_RUNTIME_DIR/pipewire-0":ro 
