@@ -3,7 +3,9 @@
 ```sh
 cd build/debian
 ./build.sh debian:test
-cd ../..
+cd ../../root/home/public
+./build.sh . ../debian .icons
+cd ../../../..
 ./startdeb.sh debian:test
 ```
 
