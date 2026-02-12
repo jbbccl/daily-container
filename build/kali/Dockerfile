@@ -19,7 +19,7 @@ RUN sed -i "s@http://http.kali.org/kali@http://mirrors.tuna.tsinghua.edu.cn/kali
                     locales sudo kali-linux-core \
                     fcitx5 fcitx5-rime \
 					kitty  libnspr4 libnss3 && \
-    apt clean && rm -rf /var/lib/apt/lists/*  && \
+    apt clean && \
     \
     groupadd --gid ${USER_GID} ${USERNAME}|| true && \
     useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} -s /bin/zsh && \

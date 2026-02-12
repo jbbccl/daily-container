@@ -19,7 +19,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debi
                     locales sudo \
                     fcitx5 fcitx5-rime \
 					kitty  && \
-    apt clean && rm -rf /var/lib/apt/lists/*  && \
+    apt clean && \
     \
     groupadd --gid ${USER_GID} ${USERNAME}|| true && \
     useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} -s /bin/zsh && \

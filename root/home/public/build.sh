@@ -2,7 +2,7 @@
 
 
 src=${1%/} dst=${2%/}
-[[ -d $src ]] || { echo -e "Usage: $0 src dst excl...\n ./build.sh . ../kali .icons"; exit 1; }
+[[ -d $src ]] || { echo -e "Usage: $0 src dst excl...\n ./build.sh . ../kali .icons .fonts"; exit 1; }
 mkdir -p "$dst"
 args=(find "$src" -type f)
 for e in "${@:3}"; do 
