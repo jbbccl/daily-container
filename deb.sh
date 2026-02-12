@@ -11,21 +11,24 @@ ARGS=(
 	--name "$CONTAINER_NAME"
 	--rm
 	-it
-	# --detach				# 后台运行
+	# --detach # 后台运行
 	
 	-v "/tmp/.X11-unix:/tmp/.X11-unix":ro 
 	-v "$XDG_RUNTIME_DIR/pipewire-0:$XDG_RUNTIME_DIR/pipewire-0":ro 
 	-v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY":ro 
 
 	-v "$(pwd)/root/home/debian:/home/a":rw
-	-v "$(pwd)/root/home/public:/home/public":ro 
+	-v "$(pwd)/root/home/public:/home/public":ro
 	# -v "$(pwd)/root/toolkit:/opt/toolkit"
 
+	-v "$(pwd)/root/share/fonts:/usr/share/fonts":ro
+	-v "$(pwd)/root/share/icons/Papirus-Dark:/usr/share/icons/Papirus-Dark":ro
+	
 	# systemd配置
 	--systemd=always 
 	-v "$(pwd)/root/etc/environment:/etc/environment" 
 	-v "$(pwd)/root/etc/profile.d/toolkit.sh:/etc/profile.d/toolkit.sh"
-	-v "$(pwd)/root/etc/systemd/autologin.conf:/etc/systemd/system/console-getty.service.d/autologin.conf"
+	# -v "$(pwd)/root/etc/systemd/autologin.conf:/etc/systemd/system/console-getty.service.d/autologin.conf"
 	
 	--device /dev/dri:/dev/dri 
 	--device /dev/snd:/dev/snd

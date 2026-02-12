@@ -8,7 +8,7 @@ ARG HOST_DISPLAY=:1
 USER root
 WORKDIR /home/${USERNAME}
 
-ADD res/fonts /usr/share/fonts
+# ADD res/fonts /usr/share/fonts
 
 RUN sed -i "s@http://http.kali.org/kali@http://mirrors.tuna.tsinghua.edu.cn/kali@g" /etc/apt/sources.list && \
     apt update && apt install -y --reinstall ca-certificates && \

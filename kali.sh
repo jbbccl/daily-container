@@ -23,6 +23,11 @@ ARGS=(
 	-v "$(pwd)/root/home/kali:/home/a"
 	-v "$(pwd)/root/home/public:/home/public":ro
 	-v "$(pwd)/root/toolkit:/opt/toolkit"
+	
+	-v "$(pwd)/root/share/fonts:/usr/share/fonts":ro
+	-v "$(pwd)/root/share/icons/Papirus-Dark:/usr/share/icons/Papirus-Dark":ro
+	
+	
 
 	--systemd=always
 	-v "$(pwd)/root/etc/environment:/etc/environment"

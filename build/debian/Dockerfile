@@ -6,10 +6,9 @@ ARG USER_GID=1000
 ARG HOST_DISPLAY=:1
 
 USER root
-# 上次没加
 WORKDIR /home/${USERNAME} 
 
-ADD res/fonts /usr/share/fonts
+# ADD res/fonts /usr/share/fonts
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources && \
 	apt update && apt install -y --reinstall ca-certificates && \

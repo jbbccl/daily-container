@@ -5,8 +5,8 @@ cd build/debian
 ./build.sh debian:test
 cd ../../root/home/public
 ./build.sh . ../debian .icons
-cd ../../../..
-./startdeb.sh debian:test
+cd ../../..
+./deb.sh debian:test
 ```
 
 ## gitignore的影响
