@@ -6,4 +6,11 @@ export XDG_DATA_DIRS="/opt/toolkit/ass:${XDG_DATA_DIRS:-/usr/local/share:/usr/sh
 
 export ZDOTDIR="$HOME/.config/zsh"
 
+if [ -f /etc/environment ]; then
+    set -a
+    . /etc/environment
+    set +a
+fi
+# export $(dbus-launch)
+
 # fcitx5 >/dev/null 2>&1 &

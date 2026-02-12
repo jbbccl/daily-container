@@ -7,14 +7,13 @@ cp $XAUTHORITY root/home/kali/.Xauthority
 img_name="${1:-localhost/kali-linux:play}"
 CONTAINER_NAME="kali"
 
+ENVS=()
+
 ARGS=(
 	--name "$CONTAINER_NAME"
 	--rm
 	-it
-	# --detach
-
-	-e "DISPLAY=$DISPLAY" 
-	-e "WAYLAND_DISPLAY=$WAYLAND_DISPLAY" 
+	--detach
 	
 	-v "/tmp/.X11-unix:/tmp/.X11-unix":ro 
 	-v "$XDG_RUNTIME_DIR/pipewire-0:$XDG_RUNTIME_DIR/pipewire-0":ro 
@@ -24,7 +23,7 @@ ARGS=(
 	-v "$(pwd)/root/home/public:/home/public":ro
 	-v "$(pwd)/root/toolkit:/opt/toolkit"
 	
-	-v "$(pwd)/root/share/fonts:/usr/share/fonts":ro
+	-v "$(pwd)/root/share/fonts:/usr/local/share/fonts":ro
 	-v "$(pwd)/root/share/icons/Papirus-Dark:/usr/share/icons/Papirus-Dark":ro
 	
 	
@@ -45,6 +44,7 @@ ARGS=(
 	--ipc=private
 	--userns=keep-id 
 	"$img_name"
+	# /sbin/init
 	/sbin/init
 	# /lib/systemd/systemd
 )
@@ -52,3 +52,5 @@ ARGS=(
 podman rm -f "$CONTAINER_NAME" 2>/dev/null
 
 podman run "${ARGS[@]}"
+
+#pd exec -it --user a kali zsh -l -c "fuzzel&sh"

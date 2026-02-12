@@ -20,7 +20,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debi
 		zsh zsh-autosuggestions zsh-syntax-highlighting \
 		systemd systemd-sysv \
 		dbus dbus-x11 dbus-daemon dbus-user-session \
-		dconf-cli dconf-gsettings-backend \
+		dconf-cli dconf-service dconf-gsettings-backend \
 		locales \
 		sudo \
 	&&\
@@ -55,6 +55,6 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debi
 	\
 	apt install -y  \
 		fcitx5 fcitx5-rime \
-		kitty \
+		kitty fuzzel \
 	&& \
 	apt clean

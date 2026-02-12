@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-
+#环境变量由root/etc/environment和root/etc/profile.d/toolkit.sh控制
 cat >root/etc/environment << EOF
 DISPLAY=$DISPLAY
 WAYLAND_DISPLAY=$WAYLAND_DISPLAY
 XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS
 
 XDG_SESSION_DESKTOP=labwc
 XDG_VTNR=1

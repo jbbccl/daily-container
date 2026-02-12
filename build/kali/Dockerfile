@@ -20,7 +20,7 @@ RUN sed -i "s@http://http.kali.org/kali@http://mirrors.tuna.tsinghua.edu.cn/kali
 		zsh zsh-autosuggestions zsh-syntax-highlighting zsh-common \
 		systemd systemd-sysv \
 		dbus dbus-x11 dbus-daemon dbus-user-session \
-		dconf-cli dconf-gsettings-backend \
+		dconf-cli dconf-service dconf-gsettings-backend \
 		locales \
 		sudo \
 	&& \
@@ -60,7 +60,7 @@ RUN sed -i "s@http://http.kali.org/kali@http://mirrors.tuna.tsinghua.edu.cn/kali
 	\
 	apt install -y  \
 		fcitx5 fcitx5-rime \
-		kitty \
+		kitty fuzzel \
 		libnspr4 libnss3 \
 	&& \
 	apt clean
