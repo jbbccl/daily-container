@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-touch $XAUTHORITY
-xauth generate $DISPLAY || true
-cp $XAUTHORITY root/home/kali/.Xauthority
-./mkenv.sh
 
-img_name="${1:-localhost/kali-linux:play}"
+if [[ -z "$XAUTHORITY" ]]; then
+	export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+fi
+touch $XAUTHORITY
+xauth generate $DISPLAY >/dev/null 2>&1 
+
+img_name="${1:-localhost/kali-linux:test}"
 CONTAINER_NAME="kali"
 
 USER_NAME="a"
@@ -16,6 +18,7 @@ ENVS=(
 	-e "XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
 	-e "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS"
 	-e "ZDOTDIR=$CONTAINER_HOME/.config/zsh"
+	-e "XAUTHORITY=$XAUTHORITY"
 
 	-e "XDG_SESSION_DESKTOP=labwc"
 	-e "XDG_VTNR=1"
@@ -48,29 +51,33 @@ ARGS=(
 	--rm
 	-it
 	# --detach
-	--user "$USER_NAME"
 
+	--mount=type=tmpfs,tmpfs-size=512M,destination="$XDG_RUNTIME_DIR",U=true,tmpfs-mode=700
+	-v "$XAUTHORITY:$XAUTHORITY":ro
 	-v "/tmp/.X11-unix:/tmp/.X11-unix":ro 
 	-v "$XDG_RUNTIME_DIR/pipewire-0:$XDG_RUNTIME_DIR/pipewire-0":ro 
 	-v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY":ro
-	-v "$XDG_RUNTIME_DIR/bus:$XDG_RUNTIME_DIR/bus":ro 
+	# -v "$XDG_RUNTIME_DIR/bus:$XDG_RUNTIME_DIR/bus":ro 
 
-
+	# 用户资源
 	-v "$(pwd)/root/home/kali:/home/a"
 	-v "$(pwd)/root/home/public:/home/public":ro
 	-v "$(pwd)/root/toolkit:/opt/toolkit"
-	
+	# 系统资源
 	-v "$(pwd)/root/share/fonts:/usr/local/share/fonts":ro
 	-v "$(pwd)/root/share/icons/Papirus-Dark:/usr/share/icons/Papirus-Dark":ro
-	
+	# 配置文件
+	-v "$(pwd)/root/entrypoint.sh:/entrypoint.sh":ro
+
 	--device /dev/dri:/dev/dri
 	--device /dev/snd:/dev/snd
 	
 	-h kali 
+	--user "$USER_NAME"
 	--network host
 	--uts private
 	--add-host kali:127.0.0.1
-	
+
 	--ipc=private
 	--userns=keep-id 
 	"$img_name"

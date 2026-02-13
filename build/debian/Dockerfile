@@ -21,13 +21,11 @@ RUN <<EOF
 	apt upgrade -y
 
 	apt install -y  \
-		zsh zsh-autosuggestions zsh-syntax-highlighting \
-		systemd systemd-sysv \
+		zsh zsh-autosuggestions zsh-syntax-highlighting zsh-common \
 		dbus dbus-x11 dbus-daemon dbus-user-session \
 		dconf-cli dconf-service dconf-gsettings-backend \
 		locales \
 		sudo
-
 
 	echo "emulate sh -c '. /etc/profile'" > /etc/zsh/zprofile
 
@@ -38,28 +36,19 @@ RUN <<EOF
 	echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME}
 	chmod 440 /etc/sudoers.d/${USERNAME}
 
-
+	
 	echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 	echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
 	locale-gen
 	echo 'LANG=zh_CN.UTF-8'  > /etc/locale.conf
 
-
-	mkdir -p touch /var/lib/systemd/linger/
-	touch /var/lib/systemd/linger/root
-	touch /var/lib/systemd/linger/${USERNAME}
-
-	mkdir -p /etc/systemd/system/console-getty.service.d/
-	echo '[Service]' > /etc/systemd/system/console-getty.service.d/autologin.conf
-	echo 'ExecStart=' >> /etc/systemd/system/console-getty.service.d/autologin.conf
-	echo "ExecStart=-/sbin/agetty --autologin ${USERNAME} --noclear --keep-baud console 115200,38400,9600 \$TERM" \
-		>> /etc/systemd/system/console-getty.service.d/autologin.conf
-
-	systemctl mask polkit.service
-
-	apt install -y  \
-		fcitx5 fcitx5-rime \
+	# fcitx5 fcitx5-rime 
+	apt install -y \
 		kitty fuzzel \
+		libnspr4 libnss3  libegl1-mesa-dev libwayland-egl1
 
+		
 	apt clean
 EOF
+
+ENTRYPOINT ["/entrypoint.sh"]
