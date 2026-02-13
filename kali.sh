@@ -6,7 +6,7 @@ fi
 touch $XAUTHORITY
 xauth generate $DISPLAY >/dev/null 2>&1 
 
-img_name="${1:-localhost/kali-linux:test}"
+img_name="${1:-localhost/kali-linux:play}"
 CONTAINER_NAME="kali"
 
 USER_NAME="a"

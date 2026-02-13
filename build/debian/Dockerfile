@@ -45,8 +45,8 @@ RUN <<EOF
 	# fcitx5 fcitx5-rime 
 	apt install -y \
 		kitty fuzzel \
-		libnspr4 libnss3  libegl1-mesa-dev libwayland-egl1
-
+		libnspr4 libnss3  libegl1-mesa-dev libwayland-egl1 \
+		libgtk-3-common libgtk-4-common
 		
 	apt clean
 EOF

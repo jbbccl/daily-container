@@ -17,6 +17,8 @@ args+=(-print0)
 	ln -srf "$f" "$dst/$rel"
 done
 
+rm "$dst/$0"
+
 #chmod -R a-w .
 #rsync -Lr icons icon
 # cp -Lr src dst
