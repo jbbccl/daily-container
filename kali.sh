@@ -81,7 +81,7 @@ ARGS=(
 	--ipc=private
 	--userns=keep-id 
 	"$img_name"
-	zsh -l
+	zsh
 )
 
 podman rm -f "$CONTAINER_NAME" 2>/dev/null

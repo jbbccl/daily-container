@@ -51,7 +51,8 @@ RUN <<EOF
 	apt install -y \
 		kitty fuzzel \
 		libnspr4 libnss3  libegl1-mesa-dev libwayland-egl1 \
-		libgtk-3-common libgtk-4-common
+		libgtk-3-common libgtk-4-common 
+		# file strace binutils kali-linux-headless 
 
 	apt clean
 EOF
